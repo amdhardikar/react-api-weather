@@ -59,37 +59,18 @@ const Current = () => {
 
    return (
       <div className="current-weather">
-         <div className="current-weather__content col">
-            <p className="current-weather__temp content">
-               {`${currentdata.temperature} °c`}
-            </p>
-            <p className="current-weather__description content">
-               {currentdata.feelslike}
-            </p>
-         </div>
-         <div className="current-weathr__image col">
-            <img
-               src={`http://openweathermap.org/img/wn/${currentdata.icon}@4x.png`}
-               alt={currentdata.feelslike}
-            />
-            <p className="current-weather__location content">
-               {`${location}, ${currentdata.country}`}
-            </p>
-         </div>
-         <div className="current-weather__extra col">
-            <div className="current-weather__humidity">
-               <h1 className="content">Humidity</h1>
-               <p className="content">{`${currentdata.humidity} %`}</p>
+         <div className="weather-info">
+            <div className="weather-temperature">
+               {`${Math.floor(currentdata.temperature)}°`}
             </div>
-            <hr />
-            <div className="current-weather__pressure">
-               <h1 className="content">Air Pressure</h1>
-               <p className="content">{`${currentdata.pressure} hPa`}</p>
-            </div>
-            <hr />
-            <div className="current-weather__wind">
-               <h1 className="content">Wind Speed</h1>
-               <p className="content">{`${currentdata.windSpeed} km/h`}</p>
+            <div className="weather-location">{location}</div>
+            <div className="weather-body">
+               <img
+                  src={`http://openweathermap.org/img/wn/${currentdata.icon}@2x.png`}
+                  alt={currentdata.feelslike}
+                  className="weather-icon"
+               />
+               <p className="weather-feelslike">{currentdata.feelslike}</p>
             </div>
          </div>
       </div>

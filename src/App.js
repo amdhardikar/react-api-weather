@@ -14,10 +14,12 @@ const App = () => {
    return (
       <Provider store={store}>
          <div className="App">
-            <Searchbar />
             <Current />
-            <Hour />
-            <Day />
+            <div className="sub-container">
+               <Searchbar />
+               <Hour />
+               <Day />
+            </div>
          </div>
       </Provider>
    )
