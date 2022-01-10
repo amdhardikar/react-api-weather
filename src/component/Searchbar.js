@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { SETCOORDINATES, CHANGELOCATION } from '../actions'
 
-const Searchbar = () => {
+const Searchbar = ({lat, lon}) => {
    const [location, setLocation] = useState('')
    const dispatch = useDispatch()
    const inputRef = useRef(null)
@@ -21,20 +21,7 @@ const Searchbar = () => {
 
    useEffect(() => {
       inputRef.current.focus()
-      const getLocation = () => {
-         const successCb = (position) => {
-            let lat = position.coords.latitude
-            let lon = position.coords.longitude
-
-            dispatch(SETCOORDINATES({ latitude: lat, longitude: lon }))
-         }
-         const errorCb = (error) => {
-            console.log(error)
-         }
-         navigator.geolocation.getCurrentPosition(successCb, errorCb)
-      }
-
-      getLocation()
+      dispatch(SETCOORDINATES({ latitude: lat, longitude: lon }))
    }, [])
 
    return (
