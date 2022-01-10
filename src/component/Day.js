@@ -30,7 +30,8 @@ const Day = () => {
          fetch(fetchUrl)
             .then((res) => res.json())
             .then((data) => data.daily)
-            .then((dailyInfo) => dispatch(GETDAILYFORECAST(dailyInfo)))
+            .then((dailyInfo) => dailyInfo.slice(1,8))
+            .then((resdata) => dispatch(GETDAILYFORECAST(resdata)))
       }
    }
 
@@ -45,24 +46,21 @@ const Day = () => {
             let month = new Date(day.dt * 1000).getMonth()
 
             return (
-               <div key={index} className="dayweather-card">
-                  <div className="dayweather__month">
+               <div key={index} className="dayweather__card">
+                  <div className="dayweather__month daily_content">
                      {dayVal} {monthName[month]}
                   </div>
-                  <div className="dayweather__img">
-                     <img
-                        src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                        alt={day.weather[0].main}
-                     />
+                  <img
+                     src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                     alt={day.weather[0].main}
+                     className="dayweather__img daily_content"
+                  />
+                  <div className="dayweather__temp daily_content">
+                     <p>{`${day.temp.day}°c`}</p>
                   </div>
-                  <div className="dayweather__temp">
-                     {Math.floor(day.temp.day)}°c
+                  <div className="daily_content">
+                     <p>{day.weather[0].main}</p>
                   </div>
-                  <div className="dayweather__tempmin">{day.temp.min}° min</div>
-                  <div className="dayweather__tempmax">{day.temp.max}° max</div>
-                  <div className="dayweather__humidity">{day.humidity}%</div>
-                  <div className="dayweather__pressure">{day.pressure} hPa</div>
-                  <div className="dayweather__wind">{day.wind_speed} km/h</div>
                </div>
             )
          })}

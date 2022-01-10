@@ -10,7 +10,7 @@ const Hour = () => {
    const dispatch = useDispatch()
 
    const fetchData = () => {
-      if (latitude !== "" && longitude !== "") {
+      if (latitude !== '' && longitude !== '') {
          const forecastUrl = `${baseUrl}onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=current,minutely,alerts,daily&appid=${apiKey}`
          fetch(forecastUrl)
             .then((res) => res.json())
@@ -18,7 +18,7 @@ const Hour = () => {
             .then((hourlyInfo) => dispatch(GETHOURLYFORECAST(hourlyInfo)))
       }
    }
-   
+
    useEffect(() => {
       fetchData()
    }, [latitude, longitude])
@@ -39,17 +39,21 @@ const Hour = () => {
 
             return (
                <div className="hourweather__card" key={index}>
-                  <div className="hourweather__time">
-                     {hr} {timeSymbol}
+                  <div className="hourweather__time hour_content">
+                     <p>
+                        {hr} {timeSymbol}
+                     </p>
                   </div>
                   <img
-                     src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`}
+                     src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
                      alt={hour.weather[0].main}
-                     className="hourweather__img"
+                     className="hourweather__img hour_content"
                   />
-                  <div className="hourweather__temp">{hour.temp}°c</div>
-                  <div className="hourweather__condition">
-                     {hour.weather[0].main}
+                  <div className="hourweather__temp hour_content">
+                     <p>{`${hour.temp}°c`}</p>
+                  </div>
+                  <div className="hourweather__condition hour_content">
+                     <p>{hour.weather[0].main}</p>
                   </div>
                </div>
             )

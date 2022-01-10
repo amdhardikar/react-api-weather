@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { SETCOORDINATES, CHANGELOCATION } from '../actions'
 
 const Searchbar = () => {
    const [location, setLocation] = useState('')
    const dispatch = useDispatch()
+   const inputRef = useRef(null)
 
    const onInputChange = (e) => {
       setLocation(e.target.value)
@@ -14,10 +15,12 @@ const Searchbar = () => {
       if (e.key === 'Enter') {
          dispatch(CHANGELOCATION(location))
          setLocation('')
+         inputRef.current.focus()
       }
    }
 
    useEffect(() => {
+      inputRef.current.focus()
       const getLocation = () => {
          const successCb = (position) => {
             let lat = position.coords.latitude
@@ -43,8 +46,8 @@ const Searchbar = () => {
                id="search"
                className="search-container__input"
                value={location}
-               placeholder="Location"
-               // ref={inputRef}
+               placeholder="Another location"
+               ref={inputRef}
                onChange={(e) => onInputChange(e)}
                onKeyPress={(e) => onKeyHandler(e)}
             />

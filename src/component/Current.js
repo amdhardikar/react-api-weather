@@ -60,17 +60,21 @@ const Current = () => {
    return (
       <div className="current-weather">
          <div className="weather-info">
-            <div className="weather-temperature">
-               {`${Math.floor(currentdata.temperature)}°`}
-            </div>
-            <div className="weather-location">{location}</div>
             <div className="weather-body">
+               <p className="weather-feelslike">{currentdata.feelslike}</p>
+            </div>
+            <div className="weather-location">
+               <p>
+                  {location} {','} {currentdata.country}
+               </p>
+            </div>
+            <div className="weather-temperature">
+               <p>{`${currentdata.temperature}°`}</p>
                <img
                   src={`http://openweathermap.org/img/wn/${currentdata.icon}@2x.png`}
                   alt={currentdata.feelslike}
                   className="weather-icon"
                />
-               <p className="weather-feelslike">{currentdata.feelslike}</p>
             </div>
          </div>
       </div>
