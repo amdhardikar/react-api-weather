@@ -22,7 +22,7 @@ const Searchbar = ({lat, lon}) => {
    useEffect(() => {
       inputRef.current.focus()
       dispatch(SETCOORDINATES({ latitude: lat, longitude: lon }))
-   }, [])
+   }, [lat, lon])
 
    return (
       <div className="main-container">

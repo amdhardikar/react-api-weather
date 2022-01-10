@@ -51,25 +51,23 @@ const App = () => {
 
    return (
       <Provider store={store}>
-         {lat !== null ? (
-            <>
-               <div className="App" style={appBackground}>
-                  <div className="app-container">
-                     <Current />
+         {lat !== null && lon !== null ? (
+            <div className="App" style={appBackground}>
+               <div className="app-container">
+                  <Current />
+               </div>
+               <div className="sub-container">
+                  <div className="search-container">
+                     <Searchbar lat={lat} lon={lon} />
                   </div>
-                  <div className="sub-container">
-                     <div className="search-container">
-                        <Searchbar lat={lat} lon={lon} />
-                     </div>
-                     <div className="hour-container">
-                        <Hour />
-                     </div>
-                     <div className="daily-container">
-                        <Day />
-                     </div>
+                  <div className="hour-container">
+                     <Hour />
+                  </div>
+                  <div className="daily-container">
+                     <Day />
                   </div>
                </div>
-            </>
+            </div>
          ) : (
             <div className="initial-container" style={appBackground}>
                <h1
